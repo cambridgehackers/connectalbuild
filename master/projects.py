@@ -51,7 +51,7 @@ class AddProjectResource(ActionResource):
         elif not m:
             msg = 'repo "' + projectrepo + ' must be of the form git://github.com/username/project.git'
 	else:
-            p = {"repo": projectrepo, "owner": authz.getUserInfo().email}
+            p = {"repo": projectrepo, "owner": authz.getUserInfo(authz.getUsername(req))['email']}
             if arches:
                 p['arches'] = arches
             if paths and paths[0] != '':
